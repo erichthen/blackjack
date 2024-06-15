@@ -5,7 +5,7 @@ import pygame
 pygame.init()
 pygame.mixer.init()
 
-random_bg_music = pygame.mixer.music.load("bg_music.mp3")
+random_bg_music = pygame.mixer.music.load("assets/bg_music.mp3")
 pygame.mixer.music.set_volume(0.4)
 pygame.mixer.music.play(-1)
 
@@ -26,7 +26,7 @@ POKER_GREEN = (0,81,44)
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Blackjack")
-logo_img = pygame.image.load("logo.png")
+logo_img = pygame.image.load("assets/logo.png")
 logo_img = pygame.transform.scale(logo_img, (606, 257.51))
 fps = 60
 timer = pygame.time.Clock()
@@ -34,7 +34,7 @@ font = pygame.font.Font('freesansbold.ttf', 40)
 font2 = pygame.font.Font('freesansbold.ttf', 30)
 font3 = pygame.font.Font('freesansbold.ttf', 20)
 font4 = pygame.font.Font('freesansbold.ttf', 25)
-score_font = pygame.font.Font('score_font.otf', 40)
+score_font = pygame.font.Font('assets/score_font.otf', 40)
 records = [0, 0, 0]
 active = False
 player_score = 0
@@ -48,13 +48,13 @@ active_hand = False #your turn
 outcome = 0
 add_score = False
 
-busted = pygame.image.load("bust.png")
+busted = pygame.image.load("assets/bust.png")
 busted = pygame.transform.scale_by(busted, 1.7)
-lost = pygame.image.load("l.png")
+lost = pygame.image.load("assets/l.png")
 lost = pygame.transform.scale_by(lost, 1.7)
-won = pygame.image.load("w.png")
+won = pygame.image.load("assets/w.png")
 won = pygame.transform.scale_by(won, 1.7)
-tie = pygame.image.load("tie.png")
+tie = pygame.image.load("assets/tie.png")
 tie = pygame.transform.scale_by(tie, 1.7)
 
 results = [busted, won, lost, tie]
@@ -93,10 +93,10 @@ def setup(act, record, result):
     if result != 0:
 
         screen.blit(results[result - 1], (-58, -68))
-        deal = pygame.draw.rect(screen, BLACK, (285, 625, 75, 80), 0, 5)
-        pygame.draw.rect(screen, GOLD, (285, 625, 75, 80), 5, 5)
-        screen.blit(font4.render("New", True, WHITE), (295, 640))
-        screen.blit(font4.render("Deal", True, WHITE), (295, 665))
+        deal = pygame.draw.rect(screen, BLACK, (295, 625, 75, 80), 0, 5)
+        pygame.draw.rect(screen, GOLD, (295, 625, 75, 80), 5, 5)
+        screen.blit(font4.render("New", True, WHITE), (305, 640))
+        screen.blit(font4.render("Deal", True, WHITE), (305, 665))
         button_list.append(deal)
     
     return button_list
