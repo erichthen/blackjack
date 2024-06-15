@@ -3,4 +3,4 @@
 ![](assets/preview.png)  
 
 ### todo  
-**add a currency/wager system, more visual details, refine outcome message**  
+**add a currency/wager system, more visual details, higher res outcome message**  
