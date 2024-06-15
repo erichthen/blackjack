@@ -93,10 +93,10 @@ def setup(act, record, result):
     if result != 0:
 
         screen.blit(results[result - 1], (-58, -68))
-        deal = pygame.draw.rect(screen, BLACK, (295, 625, 75, 80), 0, 5)
-        pygame.draw.rect(screen, GOLD, (295, 625, 75, 80), 5, 5)
-        screen.blit(font4.render("New", True, WHITE), (305, 640))
-        screen.blit(font4.render("Deal", True, WHITE), (305, 665))
+        deal = pygame.draw.rect(screen, BLACK, (288, 625, 75, 80), 0, 5)
+        pygame.draw.rect(screen, GOLD, (288, 625, 75, 80), 5, 5)
+        screen.blit(font4.render("New", True, WHITE), (298, 640))
+        screen.blit(font4.render("Deal", True, WHITE), (298, 665))
         button_list.append(deal)
     
     return button_list
