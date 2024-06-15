@@ -40,12 +40,16 @@ dealer_hand = []
 outcome = 0
 reveal_dealer = False
 active_hand = False #your turn
+outcome = 0
+add_score = False
+
+
 
 
 #===== functions ================
 
 #returns buttons depending on the state of the game
-def setup(act, record):
+def setup(act, record, result):
 
     button_list = []
 
@@ -150,6 +154,30 @@ def draw_scores(player, dealer):
         pygame.draw.rect(screen, WHITE, (325, 80, 55, 55), 4, 5)
         screen.blit(score_font.render(str(dealer), True, WHITE), (337, 84))
 
+def endgame(hand_is_active, dscore, pscore, result, totals, add):
+
+    #result map: 1: bust, 2: win, 3: loss, 4: push
+    if not hand_is_active and dscore >= 17:
+        if pscore > 21:
+            result = 1
+        elif dscore < pscore <= 21 or dscore > 21:
+            result = 2
+        elif pscore < dscore <= 21:
+            result = 3
+        # a tie
+        else:
+            result = 4
+    if add:
+        if result in [1,3]:
+            totals[1] += 1
+        elif result == 2:
+            totals[0] += 1
+        else:
+            totals[2] += 1
+        add = False #only want to add to totals once per cycle
+
+    return result, totals, add
+
         
 #==== game loop ===============
 
@@ -184,7 +212,7 @@ while running:
                 dealer_hand, game_deck = deal_cards(dealer_hand, game_deck)
         draw_scores(player_score, dealer_score)
 
-    buttons = setup(active, record)
+    buttons = setup(active, record, outcome)
 
     for event in pygame.event.get():
 
@@ -202,6 +230,8 @@ while running:
                     dealer_hand = []
                     outcome = 0
                     active_hand = True
+                    outcome = 0
+                    add_score = True
             else:
                 #else buttons[0] is "hit me"
                 if buttons[0].collidepoint(event.pos) and player_score < 21 and active_hand:
@@ -211,9 +241,11 @@ while running:
                     reveal_dealer = True
                     active_hand = False
 
+    if active_hand and player_score >= 21:
+        reveal_dealer = True
+        active_hand = False
 
-
-
+    outcome, records, add_score = endgame(active_hand, dealer_score, player_score, outcome, records, add_score)
 
     pygame.display.flip()
     
