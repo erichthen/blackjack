@@ -16,7 +16,7 @@ one_deck = 4 * cards
 decks = 4
 WIDTH = 650
 HEIGHT = 800
-GOLD = (193, 161, 31)
+GOLD = (229, 171, 38)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLACK = (0, 0, 0)
@@ -35,6 +35,7 @@ font2 = pygame.font.Font('freesansbold.ttf', 30)
 font3 = pygame.font.Font('freesansbold.ttf', 20)
 font4 = pygame.font.Font('freesansbold.ttf', 25)
 score_font = pygame.font.Font('assets/score_font.otf', 40)
+bj_font = pygame.font.Font('assets/score_font.otf', 48)
 records = [0, 0, 0]
 active = False
 player_score = 0
@@ -186,6 +187,8 @@ def endgame(hand_is_active, dscore, pscore, result, totals, add):
             result = 1
         elif dscore < pscore <= 21 or dscore > 21:
             result = 2
+            if pscore == 21:
+                screen.blit(bj_font.render("BLACKJACK!", True, BLACK), (330, 533))
         elif pscore < dscore <= 21:
             result = 3
         # a tie
@@ -227,6 +230,7 @@ while running:
         pygame.draw.rect(screen, BLACK, (385, 49, 175, 5), 0, 5)
         screen.blit(font3.render("Your Hand", True, WHITE), (111, 324))
         screen.blit(font3.render("Dealers Hand", True, WHITE), (400, 25))
+
 
         player_score = calculate_score(my_hand)
         draw_cards(my_hand, dealer_hand, reveal_dealer)
