@@ -44,8 +44,6 @@ outcome = 0
 add_score = False
 
 
-
-
 #===== functions ================
 
 #returns buttons depending on the state of the game
@@ -245,7 +243,7 @@ while running:
         reveal_dealer = True
         active_hand = False
 
-    outcome, records, add_score = endgame(active_hand, dealer_score, player_score, outcome, records, add_score)
+    outcome, record, add_score = endgame(active_hand, dealer_score, player_score, outcome, record, add_score)
 
     pygame.display.flip()
     
